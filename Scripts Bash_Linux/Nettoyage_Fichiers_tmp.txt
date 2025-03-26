@@ -1,0 +1,4 @@
+#!/bin/bash
+# Nettoyage des fichiers temporaires
+find /tmp -type f -mtime +7 -exec rm {} \;
+echo "Nettoyage des fichiers temporaires complété."

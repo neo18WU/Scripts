@@ -1,0 +1,7 @@
+# insatller rsync	apt install rsync
+
+#de base 		rsync [modificateurs optionnels] [SRC] [DEST]
+#PULL			rsync [modificateurs optionnels] [USER@]HOST:SRC [DEST]
+#PUSH			rsync [modificateurs optionnels] SRC [USER@]HOST:[DEST]
+
+

@@ -1,0 +1,28 @@
+#!/bin/bash
+rm $1.rte
+for ((TTL=1; TTL<=30; TTL++))
+do
+option=("-I" "-T" "-T -p25" "-T -p22" "-T -p443" "-T -p21" "-T -p53" "-T
+-p113" "-T -p8080" "-U" "-U -p88" "-U -p8080" "-U -p21")
+echo "======Router N° $TTL======"
+for option in "${option[@]}";
+do
+echo "protocole = " $option
+route=`traceroute $option -q1 -f$TTL -m$TTL $1 |sed '1d'
+|cut -d"(" -f2 |cut -d")" -f1 |sed -e "s/*/Inconnu $1/g" `
+AS=`traceroute $option -q1 -f$TTL -m$TTL -A $1 |sed '1d'
+|cut -d"[" -f2 |cut -d"]" -f1|sed -e "s/*/AS_Inconnu/g" `
+Route="$route [$AS]"
+echo $Route
+echo
+if [[ $route != *Inconnu* ]]
+then
+break
+fi
+done
+echo $Route >> $1.rte
+if [[ $route == $1 ]]
+then
+break
+fi
+done

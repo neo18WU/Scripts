@@ -1,0 +1,13 @@
+#!/bin/bash
+# Script de sauvegarde
+SOURCE_DIR="/home/utilisateur/documents"
+DEST_DIR="/home/utilisateur/sauvegarde"
+DATE=$(date +"%Y-%m-%d")
+
+# Créer un répertoire de sauvegarde avec la date du jour
+mkdir -p "$DEST_DIR/$DATE"
+
+# Copier les fichiers du répertoire source vers le répertoire de sauvegarde
+cp -r "$SOURCE_DIR"/* "$DEST_DIR/$DATE"
+
+echo "Sauvegarde complétée pour $DATE"

@@ -1,0 +1,15 @@
+
+#exportation des utilisateurs
+Get-ADUser -Filter * | Select-Object -Property * | Sort-Object -Property Name | Format-Table Name 
+
+#exportation des groupes
+Get-ADGroup -Filter * | Select-Object -Property * | Sort-Object -Property Name | Format-Table Name | Out-File C:\Scripts\Exports\Groupes.txt -Append -Encoding Default
+
+#Export partages actifs
+Get-smbshare | Out-File C:\Scripts\Exports\Partages.txt
+
+#Export des imprimantes
+Get-Printer | Out-File C:\Scripts\Exports\Imprimantes.txt
+
+#Rapport HTML de l'ensemble des GPO
+Get-GPOReport -All -Path C:\Scripts\Exports\GPO_Report.html -ReportType HTML

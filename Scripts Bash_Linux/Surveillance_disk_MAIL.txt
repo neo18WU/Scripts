@@ -1,0 +1,11 @@
+#!/bin/bash
+# Surveillance de l'utilisation du disque
+THRESHOLD=80
+
+# Obtenir l'utilisation du disque pour la partition racine
+USAGE=$(df / | grep / | awk '{print $5}' | sed 's/%//g')
+
+# Vérifier si l'utilisation dépasse le seuil
+if [ "$USAGE" -gt "$THRESHOLD" ]; then
+  echo "Alerte: l'utilisation du disque est à $USAGE%" | mail -s "Alerte d'espace disque" utilisateur@example.com
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+# Surveillance de l'utilisation du disque avec log sur fichier txt
+THRESHOLD=80
+
+# Obtenir l'utilisation du disque pour la partition racine
+USAGE=$(df / | grep / | awk '{print $5}' | sed 's/%//g')
+
+# Obtenir la date
+DATE=$(date)
+
+# Vérifier si l'utilisation dépasse le seuil
+if [ "$USAGE" -gt "$THRESHOLD" ]; then
+  echo "$DATE - Alerte: l'utilisation du disque est à $USAGE%" >> log_EspaceDisk.txt
+fi
