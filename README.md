@@ -1,2 +1,2 @@
-# Scripts for Administration
+# Scripts
 Scripts for administrate Systems and networks 
